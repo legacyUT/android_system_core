@@ -20,6 +20,7 @@
 #include <utils/Printer.h>
 #include <utils/Errors.h>
 #include <utils/Log.h>
+#include <algorithm>
 #include <UniquePtr.h>
 
 #include <backtrace/Backtrace.h>

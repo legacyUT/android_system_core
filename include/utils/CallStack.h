@@ -17,6 +17,8 @@
 #ifndef ANDROID_CALLSTACK_H
 #define ANDROID_CALLSTACK_H
 
+#pragma once
+
 #include <android/log.h>
 #include <backtrace/backtrace_constants.h>
 #include <utils/String8.h>

@@ -144,7 +144,9 @@ static int filter_usb_device(char* sysfs_name,
     info.dev_protocol = dev->bDeviceProtocol;
     info.writable = writable;
 
-    snprintf(info.device_path, sizeof(info.device_path), "usb:%s", sysfs_name);
+    char safe_name[252];
+    strncpy(safe_name, sysfs_name, 252);
+    snprintf(info.device_path, sizeof(info.device_path), "usb:%s", safe_name);
 
     /* Read device serial number (if there is one).
      * We read the serial number from sysfs, since it's faster and more
@@ -157,8 +159,12 @@ static int filter_usb_device(char* sysfs_name,
         char path[80];
         int fd;
 
+
+        char safe_path[59];
+        strncpy(safe_path, sysfs_name, 59);
+
         snprintf(path, sizeof(path),
-                 "/sys/bus/usb/devices/%s/serial", sysfs_name);
+                 "/sys/bus/usb/devices/%s/serial", safe_path);
         path[sizeof(path) - 1] = '\0';
 
         fd = open(path, O_RDONLY);

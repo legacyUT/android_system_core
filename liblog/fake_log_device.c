@@ -460,13 +460,17 @@ static void showLog(LogState *state,
 
     numVecs = numLines*3;  // 3 iovecs per line.
     if (numVecs > INLINE_VECS) {
+        /*
         vec = (struct iovec*)malloc(sizeof(struct iovec)*numVecs);
         if (vec == NULL) {
+        */
             msg = "LOG: write failed, no memory";
             numVecs = 3;
             numLines = 1;
+        /*
             vec = stackVec;
         }
+        */
     }
 
     /*
